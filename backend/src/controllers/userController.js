@@ -1,5 +1,6 @@
 const User = require("../models/Users");
 const createError = require("../../err");
+const Video = require("../models/Video");
 
 class UserController {
 
@@ -67,16 +68,30 @@ class UserController {
     }
 
     likeUser = async(req, res, next) => {
-        try {
+        const id = req.user.id;
+        const videoId = req.user.videoId;
 
+        try {
+            await Video.findByIdAndUpdate(videoId,{
+                $addToSet:{likes:id},
+                $pull:{dislikes:id}
+            })
+            res.status(200).json("The video has been liked!!")
         } catch (err) {
             next(err);
         }
     }
 
     dislikeUser = async(req, res, next) => {
-        try {
+        const id = req.user.id;
+        const videoId = req.user.id;
 
+        try {
+            await Video.findByIdAndUpdate(videoId, {
+                $addToSet: {dislikes:id},
+                $pull: {likes:id}
+            });
+            res.status(200).json("The video has been disliked!!")
         } catch (err) {
             next(err)
         }
