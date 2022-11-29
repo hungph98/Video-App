@@ -40,7 +40,7 @@ class UserController {
 
     subscribeUser = async(req, res, next) => {
         try {
-            await User.findById(req.params.id, {
+            await User.findByIdAndUpdate(req.params.id, {
                 $push:{ subscribeUsers: req.params.id }
             });
             await User.findByIdAndUpdate(req.params.id, {
