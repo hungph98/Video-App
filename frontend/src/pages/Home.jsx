@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import Card from "../components/Card";
 import axios from "axios";
+import "../App.css";
 
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`;
 
 const Home = ({type}) => {
   const [videos, setVideos] = useState([]);
@@ -21,11 +16,11 @@ const Home = ({type}) => {
   }, [type]);
 
   return (
-    <Container>
+    <div className="container">
       {videos.map((video) => (
         <Card key={video._id} video={video}/>
       ))}
-    </Container>
+    </div>
   );
 };
 
