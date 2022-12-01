@@ -9,7 +9,7 @@ router.post("/resgiter", authController.register);
 router.post("/login", authController.login);
 
 // Google Auth
-router.post("/google")
+router.post("/google", authController.googleAuth)
 
 
 module.exports = router;

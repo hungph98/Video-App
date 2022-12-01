@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {loginFailure, loginStart, loginSuccess} from "../redux/userSlice";
 import {auth, provider} from "../firebase";
 import {signInWithPopup} from "firebase/auth";
-import {async} from "@firebase/util";
+// import {async} from "@firebase/util";
 import {useNavigate} from "react-router-dom";
 
 const Container = styled.div`
@@ -72,7 +72,7 @@ const Link = styled.span`
 
 const SignIn = () => {
     const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
+    const [setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate()
@@ -85,7 +85,7 @@ const SignIn = () => {
             dispatch(loginSuccess(res.data));
             navigate("/")
         } catch (err) {
-            // dispatch(loginFailure());
+            dispatch(loginFailure());
         }
     };
 
@@ -127,7 +127,7 @@ const SignIn = () => {
                 />
                 <Button onClick={handleLogin}>Sign in</Button>
                 <Title>or</Title>
-                <Button onClick={signInWithGoogle}>Signin with Google</Button>
+                <Button onClick={signInWithGoogle}>SignIn with Google</Button>
                 <Title>or</Title>
                 <Input
                     placeholder="username"
